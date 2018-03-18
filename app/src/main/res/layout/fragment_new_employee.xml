@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.exazoom.kursovayabasyul.NewEmployeeFragment">
+
+    <EditText
+        android:id="@+id/employee_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2pt"
+        android:hint="@string/employee_key" />
+
+    <EditText
+        android:id="@+id/employee_fio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2pt"
+        android:hint="@string/employee_fio" />
+
+    <EditText
+        android:id="@+id/employee_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2pt"
+        android:hint="@string/employee_address" />
+
+    <EditText
+        android:id="@+id/employee_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2pt" />
+
+    <Button
+        android:id="@+id/create_new_employee"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="@string/create_new_employee"
+        android:textColor="#FFF"
+        android:background="@drawable/round_button"/>
+
+</LinearLayout>

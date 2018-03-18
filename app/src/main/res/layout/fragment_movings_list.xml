@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.exazoom.kursovayabasyul.EmpParkingFragment">
+
+    <RadioGroup
+        android:id="@+id/movings_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/all_movings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:text="@string/all_movings" />
+
+        <RadioButton
+            android:id="@+id/going"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:text="@string/going"/>
+
+        <RadioButton
+            android:id="@+id/parked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:text="@string/parked"/>
+
+        <RadioButton
+            android:id="@+id/goes_away"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:text="@string/goes_away"/>
+
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recycler_view"
+        android:name="org.exazoom.kursovayabasyul.MovingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="56dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="org.exazoom.kursovayabasyul.MovingsFragment"
+        tools:listitem="@layout/fragment_movings" />
+
+</LinearLayout>
