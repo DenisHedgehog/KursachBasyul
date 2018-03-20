@@ -49,4 +49,6 @@
     <string name="going">В пути</string>
     <string name="parked">Припаркованы</string>
     <string name="goes_away">Уехали</string>
+    <string name="search">Поиск</string>
+    <string name="search_by_number">Поиск по номеру</string>
 </resources>

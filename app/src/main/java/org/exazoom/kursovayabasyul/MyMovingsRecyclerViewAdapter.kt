@@ -72,7 +72,7 @@ class MyMovingsRecyclerViewAdapter(private val activity: Activity, private val m
             }
         }
         holder.moveTextView.text = "Статус: $move"
-        holder.clientTextView.text = "Клиент: ${getClientFio(position)}"
+        holder.clientTextView.text = "Клиент: ${getClientFio(position)} (${getClientCarNumber(position)})"
         Log.i("MOVINGS", "ACTIVE EMP is ${getActiveEmp(activity)}")
         holder.acceptButton.setOnClickListener {
             Log.i("${holder.clientTextView.text}", "Was clicked")
@@ -136,6 +136,10 @@ class MyMovingsRecyclerViewAdapter(private val activity: Activity, private val m
 
     private fun getClientFio(position: Int): String = runBlocking {
         async { dbInstance.getClientsDao().getClientById(mValues[position].id_client).first().fio_client }.await()
+    }
+
+    private fun getClientCarNumber(position: Int): String = runBlocking {
+        async { dbInstance.getClientsDao().getClientById(mValues[position].id_client).first().car!! }.await()
     }
 
     private fun getClientTariff(position: Int): String = runBlocking {

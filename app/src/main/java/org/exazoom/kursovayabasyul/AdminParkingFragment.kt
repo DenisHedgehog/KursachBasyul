@@ -34,10 +34,16 @@ class AdminParkingFragment : Fragment() {
         view.daily_price_edit_text.setText(tariffs.first { it.tariff == "daily" }.price.toString(), TextView.BufferType.EDITABLE)
 
         view.update_tariffs.setOnClickListener {
-            tariffs.first { it.tariff == "hourly" }.price = view.hourly_price_edit_text.text.toString().toInt()
-            tariffs.first { it.tariff == "daily" }.price = view.daily_price_edit_text.text.toString().toInt()
-            tariffs.map { updateTariffs(it) }
-            toast("Тарифы обновлены")
+            when {
+                view.hourly_price_edit_text.text.toString().toInt() < 1 ||
+                        view.daily_price_edit_text.text.toString().toInt() < 1 -> toast("Цена на тариф не должна быть меньше 1")
+                else -> {
+                    tariffs.first { it.tariff == "hourly" }.price = view.hourly_price_edit_text.text.toString().toInt()
+                    tariffs.first { it.tariff == "daily" }.price = view.daily_price_edit_text.text.toString().toInt()
+                    tariffs.map { updateTariffs(it) }
+                    toast("Тарифы обновлены")
+                }
+            }
         }
 
         return view

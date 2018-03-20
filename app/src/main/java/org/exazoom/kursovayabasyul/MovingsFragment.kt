@@ -3,6 +3,7 @@ package org.exazoom.kursovayabasyul
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,12 @@ class MovingsFragment : Fragment() {
             view.goes_away.isChecked -> movings = getMovingsByState("left")
         }
 
+        view.search_moving_by_number_btn.setOnClickListener {
+            movings = getMovingsByCarNumber(view.search_moving_by_number_et.text.toString())
+            view.recycler_view.adapter = MyMovingsRecyclerViewAdapter(activity, movings, mListener)
+            view.recycler_view.adapter.notifyDataSetChanged()
+        }
+
         view.movings_rg.setOnCheckedChangeListener { radioGroup, i ->
             when {
                 view.all_movings.isChecked -> movings = getMovings()
@@ -62,6 +69,17 @@ class MovingsFragment : Fragment() {
 
     private fun getMovingsByState(state: String) = runBlocking {
         async { dbInstance.getMovingsDao().getMovingsByState(state).toList() }.await()
+    }
+
+    private fun getMovingsByCarNumber(number: String) = runBlocking {
+        async {
+            val moves = mutableListOf<Movings>()
+            dbInstance.getClientsDao().getClientsByNumber("%$number%").filter {
+                moves.addAll(dbInstance.getMovingsDao().getMovingsByClient(it.id_client))
+            }
+            Log.i("MOVES LIST", "COUNT = ${moves.size}")
+            return@async moves
+        }.await()
     }
 
     override fun onDetach() {

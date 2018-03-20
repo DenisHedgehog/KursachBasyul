@@ -92,6 +92,9 @@ interface ClientsDao {
     @Query("SELECT* FROM Clients WHERE id_client = :id_client")
     fun getClientById(id_client: Int): Array<Clients>
 
+    @Query("SELECT* FROM Clients WHERE car LIKE :number")
+    fun getClientsByNumber(number: String): Array<Clients>
+
     @Insert
     fun insert(clients: Clients)
 
@@ -129,6 +132,9 @@ interface MovingsDao {
 
     @Query("SELECT* FROM Movings WHERE state = :state")
     fun getMovingsByState(state: String): Array<Movings>
+
+    @Query("SELECT* FROM Movings WHERE id_client = :id_client")
+    fun getMovingsByClient(id_client: Int): Array<Movings>
 
     @Insert
     fun insert(movings: Movings)
